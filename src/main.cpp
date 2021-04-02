@@ -11,7 +11,7 @@
 #include <actuator/led.h>
 
 CircularBuffer<int> circular = CircularBuffer<int>(10);
-AnalogSensor level_sensor = AnalogSensor(0x7A, A3);
+AnalogSensor pot_sensor = AnalogSensor(0x7A, A3);
 Pump pump = Pump(0xAB, 7);
 Led led = Led(0xAC, 13);
 
@@ -23,9 +23,9 @@ void setup() {
 }
 
 void loop() {
-  level_sensor.excecute();
-  if(level_sensor.hasChanged()){
-    ValueABC<float> value = level_sensor.getValue();
+  pot_sensor.excecute();
+  if(pot_sensor.hasChanged()){
+    ValueABC<float> value = pot_sensor.getValue();
 
     // PID: Va aquí;
 
