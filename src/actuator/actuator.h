@@ -18,10 +18,10 @@ class ActuatorABC {
         virtual void write(ValueABC<T> value);
 };
 
-//template<class T>
-//ActuatorABC<T>::ActuatorABC(uint8_t id){
-//    this->id = id;
-//}
+template<class T>
+ActuatorABC<T>::ActuatorABC(uint8_t id){
+    this->id = id;
+}
 
 template<class T>
 void ActuatorABC<T>::setValue(ValueABC<T> value) {
