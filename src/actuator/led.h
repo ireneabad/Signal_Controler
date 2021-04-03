@@ -16,9 +16,8 @@ class Led : public ActuatorABC<float> {
         void write(Signal value);
 };
 
-template<class T>
 void Led::write(Signal value) {
-    bool bool_value  = (0.5 > value);
+    bool bool_value  = (0.5 > value.getValue());
     digitalWrite(this->pin, bool_value);
 }
 
