@@ -3,25 +3,18 @@
 #include <serializers/output.h>
 #include <processors/circular_buffer.h>
 #include <processors/trasnformer.h>
-
 #include <sensors/analog_sensor.h>
 #include <sensors/digital_sensor.h>
 #include <sensors/temperature/lm35.h>
 #include <actuator/motor.h>
-//#include <actuator/led.h>
+#include <actuator/led.h>
 
 CircularBuffer<int> circular = CircularBuffer<int>(30);
 AnalogSensor pot_sensor = AnalogSensor(0x7A, A3);
-Motor motor = Motor(0xAB, 7);
-//Led led = Led(0xAC, 13);
+Motor motor = Motor(0xAB, 8, 9, 10, 11);
+Led led = Led(0xAC, 13);
 
 
-void setup() {
-  Serial.begin(9600);
-  pinMode(CONFIG::SENSOR_INPUNT, INPUT);
-  pinMode(3, INPUT);
-  pinMode(13, OUTPUT);
-}
 
 void loop() {
   pot_sensor.excecute();
@@ -44,10 +37,10 @@ void loop() {
      
     bool bool_value  = (50 < mapped_read);
     digitalWrite(13,bool_value);
-   
 
-    //pump.setValue(value);
-    //led.setValue(value);
+    motor.setValue(mapped_read);
+    led.setValue(bool_value);
+   
   }
   //pump.excecute();
   //led.excecute();

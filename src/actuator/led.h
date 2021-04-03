@@ -13,11 +13,11 @@ class Led : public ActuatorABC<float> {
         }
     private:
         uint8_t pin;
-        void write(T value);
+        void write(Signal value);
 };
 
 template<class T>
-void Led::write(T value) {
+void Led::write(Signal value) {
     bool bool_value  = (0.5 > value);
     digitalWrite(this->pin, bool_value);
 }
