@@ -15,6 +15,7 @@ class ActuatorABC {
     private:
         bool hasToChange;
         ValueABC<T> value;
+        uint8_t id;
         virtual void write(ValueABC<T> value);
 };
 
