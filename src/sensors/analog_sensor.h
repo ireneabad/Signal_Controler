@@ -17,7 +17,8 @@ class AnalogSensor : public SensorABC<float> {
 
 
 float AnalogSensor::read() {
-    return (analogRead(this->pin) / 1023) * 1.0;
+    return analogRead(this->pin);
+    //return (map(analogRead(this->pin),0,1023,0,255));
 }
 
 #endif

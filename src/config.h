@@ -4,7 +4,7 @@
 #include <Arduino.h>
 
 namespace CONFIG {
-    const uint8_t SENSOR_INPUNT = A0; 
+    const uint8_t SENSOR_INPUNT = A3; 
 }
 
 #endif
