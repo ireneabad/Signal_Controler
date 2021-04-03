@@ -5,6 +5,7 @@
 #include <actuator/actuator.h>
 #include <entities/signal.h>
 
+
 class Led : public ActuatorABC<float> {
     public:
         Led(uint8_t id, uint8_t pin):ActuatorABC<float>(id){
@@ -12,11 +13,12 @@ class Led : public ActuatorABC<float> {
         }
     private:
         uint8_t pin;
-        void write(Signal value);
+        void write(T value);
 };
 
-void Led::write(Signal value) {
-    bool bool_value  = (0.5 > value.getValue());
+template<class T>
+void Led::write(T value) {
+    bool bool_value  = (0.5 > value);
     digitalWrite(this->pin, bool_value);
 }
 

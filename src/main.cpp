@@ -7,13 +7,13 @@
 #include <sensors/analog_sensor.h>
 #include <sensors/digital_sensor.h>
 #include <sensors/temperature/lm35.h>
-#include <actuator/pump.h>
-#include <actuator/led.h>
+#include <actuator/motor.h>
+//#include <actuator/led.h>
 
 CircularBuffer<int> circular = CircularBuffer<int>(30);
 AnalogSensor pot_sensor = AnalogSensor(0x7A, A3);
-Pump pump = Pump(0xAB, 7);
-Led led = Led(0xAC, 13);
+Motor motor = Motor(0xAB, 7);
+//Led led = Led(0xAC, 13);
 
 
 void setup() {
@@ -35,17 +35,19 @@ void loop() {
     int mean = circular.mean();
 
     valuePrinter(Serial, mean, "Mean Value");
+
+    int scaled_read = scaler<int>(value.getValue(), 2.0);
+    int mapped_read = analog_map<int>(value.getValue(), 0,100);
+
+    valuePrinter(Serial, scaled_read, "Lectura escalada");
+    valuePrinter(Serial, mapped_read, "Lectura mapeada");
      
-    //valuePrinter(Serial, mean, "Mean Value");
-   // valuePrinter(Serial, raw_read, "Proc Value");
+    bool bool_value  = (50 < mapped_read);
+    digitalWrite(13,bool_value);
    
-    //float lectura=analogRead(3);
-    //float trans=map(lectura,30,1000,0,100);
-    
-    // PID: Va aquí;
 
     //pump.setValue(value);
-    led.setValue(value);
+    //led.setValue(value);
   }
   //pump.excecute();
   //led.excecute();

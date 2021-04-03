@@ -9,7 +9,7 @@ T scaler(T inp, float scale) {
 }
 
 template<class T>
-T truncate(T inp, T max, T min) {
+T truncate(T inp, T min,T max) {
     if (inp <= min) {
         return inp;
     } 
@@ -19,4 +19,8 @@ T truncate(T inp, T max, T min) {
     return inp;
 }
 
+template<class T>
+T analog_map(T inp, T min,T max) {
+    return map(inp,0,1023,min,max);
+}
 #endif
