@@ -6,9 +6,9 @@
 #include <entities/signal.h>
 
 
-class Led : public ActuatorABC<float> {
+class Led : public ActuatorABC<bool> {
     public:
-        Led(uint8_t id, uint8_t pin):ActuatorABC<float>(id){
+        Led(uint8_t id, uint8_t pin):ActuatorABC<bool>(id){
             this->pin=pin;
         }
     private:
@@ -16,10 +16,9 @@ class Led : public ActuatorABC<float> {
         void write(Signal value);
 };
 
-template<class T>
+
 void Led::write(Signal value) {
-    bool bool_value  = (0.5 > value);
-    digitalWrite(this->pin, bool_value);
+    digitalWrite(this->pin, value.getValue());
 }
 
 #endif

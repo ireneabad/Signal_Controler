@@ -21,4 +21,6 @@ float AnalogSensor::read() {
     //return (map(analogRead(this->pin),0,1023,0,255));
 }
 
+
+
 #endif

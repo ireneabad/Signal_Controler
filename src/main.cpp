@@ -8,6 +8,10 @@
 #include <sensors/temperature/lm35.h>
 #include <actuator/motor.h>
 #include <actuator/led.h>
+#include <entities/signal.h>
+#include <entities/power.h>
+#include <entities/value.h>
+
 
 CircularBuffer<int> circular = CircularBuffer<int>(30);
 AnalogSensor pot_sensor = AnalogSensor(0x7A, A3);
@@ -21,29 +25,26 @@ void loop() {
   if(pot_sensor.hasChanged()){
     ValueABC<float> value = pot_sensor.getValue();
 
-    valuePrinter(Serial, value.getValue(), "Lectura potenciometro");
-    
-    //float mean=pot_sensor.getValue();
-    circular.append(value.getValue());
+    circular.append(value.getValue()); // Prefuntar si tiene que tener doble getValue
     int mean = circular.mean();
 
+    float scaled_read = scaler<int>(value.getValue(), 2.0);
+    float mapped_read = analog_map<int>(value.getValue(), 0,100);
+
+    valuePrinter(Serial, value.getValue(), "Lectura potenciometro");
     valuePrinter(Serial, mean, "Mean Value");
-
-    int scaled_read = scaler<int>(value.getValue(), 2.0);
-    int mapped_read = analog_map<int>(value.getValue(), 0,100);
-
     valuePrinter(Serial, scaled_read, "Lectura escalada");
     valuePrinter(Serial, mapped_read, "Lectura mapeada");
-     
-    bool bool_value  = (50 < mapped_read);
-    digitalWrite(13,bool_value);
+    
+    Signal bool_value = Signal((50 < mapped_read),0);
+    //digitalWrite(13,bool_value);
 
     motor.setValue(mapped_read);
-    led.setValue(bool_value);
+    led.setValue();
    
   }
-  //pump.excecute();
-  //led.excecute();
+  motor.excecute();
+  led.excecute();
   //digitalWrite(13,HIGH);
 
 

@@ -5,10 +5,14 @@
 #include <entities/value.h>
 
 
-class Signal : public ValueABC<float> {
+class Signal : public ValueABC<bool> {
     public:
         Signal():ValueABC(){};
-        Signal(float value, uint8_t source):ValueABC(value, source){};
+        Signal(bool value, uint8_t source):ValueABC(value, source){};
+        bool getValue();
 };
 
+bool Signal::getValue() {
+    return this->value.getValue();
+}
 #endif
