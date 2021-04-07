@@ -10,9 +10,11 @@ class Signal : public ValueABC<bool> {
         Signal():ValueABC(){};
         Signal(bool value, uint8_t source):ValueABC(value, source){};
         bool getValue();
+    private:
+        bool value;
 };
 
 bool Signal::getValue() {
-    return this->value.getValue();
+    return this->value;
 }
 #endif

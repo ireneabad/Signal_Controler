@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <entities/value.h>
+#include <entities/signal.h>
 
 template<class T>
 class ActuatorABC {
@@ -43,6 +44,7 @@ void ActuatorABC<T>::excecute() {
     }
 }
 
+//Para obtener estado del actuador, no se está utilizando
 template<class T>
 ValueABC<T> ActuatorABC<T>::getValue() {
     return this->value;

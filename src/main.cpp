@@ -39,11 +39,11 @@ void loop() {
     Signal bool_value = Signal((50 < mapped_read),0);
     //digitalWrite(13,bool_value);
 
-    motor.setValue(mapped_read);
-    led.setValue();
+   // motor.setValue(mapped_read);
+    led.setValue(bool_value);
    
   }
-  motor.excecute();
+  //motor.excecute();
   led.excecute();
   //digitalWrite(13,HIGH);
 

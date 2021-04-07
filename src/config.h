@@ -21,8 +21,8 @@ namespace CONFIG {
 void setup() {
   Serial.begin(9600);
 
-  pinMode(13, INPUT);
-  pinMode(3, OUTPUT);
+  pinMode(3, INPUT);
+  pinMode(13, OUTPUT);
   pinMode(8, OUTPUT);
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
