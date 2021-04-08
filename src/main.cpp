@@ -9,6 +9,7 @@
 #include <actuator/motor.h>
 #include <actuator/led.h>
 #include <entities/signal.h>
+#include <entities/signal_pwm.h>
 #include <entities/power.h>
 #include <entities/value.h>
 
@@ -23,28 +24,30 @@ Led led = Led(0xAC, 13);
 void loop() {
   pot_sensor.excecute();
   if(pot_sensor.hasChanged()){
-    ValueABC<float> value = pot_sensor.getValue();
+    Power sensor_value = Power(pot_sensor.getValue().getValue(),0);
 
-    circular.append(value.getValue()); // Prefuntar si tiene que tener doble getValue
+    circular.append(sensor_value.getValue()); // Prefuntar si tiene que tener doble getValue
     int mean = circular.mean();
 
-    float scaled_read = scaler<int>(value.getValue(), 2.0);
-    float mapped_read = analog_map<int>(value.getValue(), 0,100);
+    float scaled_read = scaler<int>(sensor_value.getValue(), 2.0);
+    SignalPWM mapped_read = SignalPWM(analog_map<int>(sensor_value.getValue(), 0,100),0);
 
-    valuePrinter(Serial, value.getValue(), "Lectura potenciometro");
+    valuePrinter(Serial, sensor_value.getValue(), "Lectura potenciometro");
     valuePrinter(Serial, mean, "Mean Value");
     valuePrinter(Serial, scaled_read, "Lectura escalada");
-    valuePrinter(Serial, mapped_read, "Lectura mapeada");
+    valuePrinter(Serial, mapped_read.getValue(), "Lectura mapeada");
     
-    Signal bool_value = Signal((50 < mapped_read),0);
-    //digitalWrite(13,bool_value);
+    Signal bool_value = Signal((50 < mapped_read.getValue()),0);
+    digitalWrite(13,bool_value.getValue());
 
-   // motor.setValue(mapped_read);
-    led.setValue(bool_value);
+    motor.setValue(mapped_read.getValue());
+    led.setValue(bool_value.getValue());
    
+    //motor.excecute();
+    //led.excecute();
   }
-  //motor.excecute();
-  led.excecute();
+
+ 
   //digitalWrite(13,HIGH);
 
 

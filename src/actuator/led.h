@@ -4,11 +4,12 @@
 #include <Arduino.h>
 #include <actuator/actuator.h>
 #include <entities/signal.h>
+#include <entities/value.h>
 
 
 class Led : public ActuatorABC<bool> {
     public:
-        Led(uint8_t id, uint8_t pin):ActuatorABC<bool>(id){
+        Led(uint8_t id, uint8_t pin):ActuatorABC(id){
             this->pin=pin;
         }
     private:
