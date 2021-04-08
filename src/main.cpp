@@ -40,8 +40,8 @@ void loop() {
     Signal bool_value = Signal((50 < mapped_read.getValue()),0);
     digitalWrite(13,bool_value.getValue());
 
-    motor.setValue(mapped_read.getValue());
-    led.setValue(bool_value.getValue());
+    //motor.setValue(mapped_read.getValue());
+    //led.setValue(bool_value.getValue());
    
     //motor.excecute();
     //led.excecute();
