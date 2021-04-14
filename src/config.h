@@ -11,12 +11,7 @@
 #include <actuator/motor.h>
 #include <actuator/led.h>
 
-
-
-
-namespace CONFIG {
-    //const uint8_t SENSOR_INPUNT = A3; 
-}
+//Lugar donde se configuran inputs y outputs del programa
 
 void setup() {
   Serial.begin(9600);
@@ -27,7 +22,8 @@ void setup() {
   pinMode(9, OUTPUT);
   pinMode(10, OUTPUT);
   pinMode(11, OUTPUT);
-  
+
+  //Quería que funcionara así pero me salía error y no lo logré solucionar
   //pinMode(pot_sensor.pin(), INPUT);
   //pinMode(led.pin(), OUTPUT);
   //pinMode(motor.pin1(), OUTPUT);

@@ -6,6 +6,7 @@
 #include <entities/signal.h>
 #include <entities/value.h>
 
+//Actuador tipo LED
 
 class Led : public ActuatorABC<bool> {
     public:

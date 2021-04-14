@@ -6,6 +6,8 @@
 #include <entities/signal_pwm.h>
 #include <entities/value.h>
 
+//Actuador tipo Stepper Motor controlado con la velocidad de los impulsos
+
 class Motor : public ActuatorABC<int> {
     public:
         Motor(uint8_t id, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4):ActuatorABC<int>(id){

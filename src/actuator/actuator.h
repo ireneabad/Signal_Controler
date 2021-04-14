@@ -7,6 +7,8 @@
 #include <entities/signal_pwm.h>
 #include <entities/power.h>
 
+//Plantilla de actuador padre
+
 template<class T>
 class ActuatorABC {
     public:

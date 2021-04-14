@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <entities/value.h>
 
+//Variavle SignalPWM que solo admite valores tipo enteros
 
 class SignalPWM : public ValueABC<int> {
     public:

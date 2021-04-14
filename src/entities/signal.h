@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <entities/value.h>
 
+//Variavle Signal que solo admite valores tipo booleanos
 
 class Signal : public ValueABC<bool> {
     public:
