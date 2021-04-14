@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <sensors/sensors.h>
 
+//Sensor análogo que recibe datos tipo float
 
 class AnalogSensor : public SensorABC<float> {
     public:
@@ -18,7 +19,8 @@ class AnalogSensor : public SensorABC<float> {
 
 float AnalogSensor::read() {
     return analogRead(this->pin);
-    //return (map(analogRead(this->pin),0,1023,0,255));
 }
+
+
 
 #endif

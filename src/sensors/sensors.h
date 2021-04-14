@@ -4,6 +4,8 @@
 #include <Arduino.h>
 #include <entities/value.h>
 
+//Template de sensores
+
 template<class T>
 class SensorABC {
     public:

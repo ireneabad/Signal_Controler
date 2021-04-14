@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <sensors/sensors.h>
 
+//No se utiliza
 
 class Lm35: public SensorABC<float> {
     public:

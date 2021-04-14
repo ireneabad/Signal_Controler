@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+//Template de clases de variables
+
 template<class T>
 class ValueABC {
     public:

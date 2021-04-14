@@ -3,11 +3,14 @@
 
 #include <Arduino.h>
 #include <actuator/actuator.h>
-#include <entities/signal.h>
+#include <entities/signal_pwm.h>
+#include <entities/value.h>
 
-class Motor : public ActuatorABC<float> {
+//Actuador tipo Stepper Motor controlado con la velocidad de los impulsos
+
+class Motor : public ActuatorABC<int> {
     public:
-        Motor(uint8_t id, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4):ActuatorABC<float>(id){
+        Motor(uint8_t id, uint8_t pin1, uint8_t pin2, uint8_t pin3, uint8_t pin4):ActuatorABC<int>(id){
             this->pin1=pin1;
             this->pin2=pin2;
             this->pin3=pin3;
@@ -19,10 +22,10 @@ class Motor : public ActuatorABC<float> {
         uint8_t pin2;
         uint8_t pin3;
         uint8_t pin4;
-        void write(Signal value);
+        void write(SignalPWM value);
 };
 
-void Motor::write(Signal value) {
+void Motor::write(SignalPWM value) {
     int paso [8][4] =
     {
     {1, 0, 0, 0},

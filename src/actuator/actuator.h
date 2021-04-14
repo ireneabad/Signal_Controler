@@ -3,20 +3,25 @@
 
 #include <Arduino.h>
 #include <entities/value.h>
+#include <entities/signal.h>
+#include <entities/signal_pwm.h>
+#include <entities/power.h>
+
+//Plantilla de actuador padre
 
 template<class T>
 class ActuatorABC {
     public:
         ActuatorABC(uint8_t id);
-        void setValue(ValueABC<T> value);
+        void setValue(T value);
         ValueABC<T> getValue();
         uint8_t getId();
         void excecute();
     private:
         bool hasToChange;
-        ValueABC<T> value;
+        T value;
         uint8_t id;
-        virtual void write(ValueABC<T> value);
+        virtual void write(T value);
 };
 
 template<class T>
@@ -25,7 +30,7 @@ ActuatorABC<T>::ActuatorABC(uint8_t id){
 }
 
 template<class T>
-void ActuatorABC<T>::setValue(ValueABC<T> value) {
+void ActuatorABC<T>::setValue(T value) {
     this->hasToChange = true;
     this->value = value;
 }
@@ -43,6 +48,7 @@ void ActuatorABC<T>::excecute() {
     }
 }
 
+//Para obtener estado del actuador, no se está utilizando
 template<class T>
 ValueABC<T> ActuatorABC<T>::getValue() {
     return this->value;

@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <sensors/sensors.h>
 
+//Sensor digitar que recibe datos booleanos
 
 class DigitalSensor : public SensorABC<bool> {
     public:

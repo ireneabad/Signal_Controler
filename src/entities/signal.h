@@ -4,11 +4,13 @@
 #include <Arduino.h>
 #include <entities/value.h>
 
+//Variavle Signal que solo admite valores tipo booleanos
 
-class Signal : public ValueABC<float> {
+class Signal : public ValueABC<bool> {
     public:
         Signal():ValueABC(){};
-        Signal(float value, uint8_t source):ValueABC(value, source){};
+        Signal(bool value, uint8_t source):ValueABC(value, source){};
+
 };
 
 #endif

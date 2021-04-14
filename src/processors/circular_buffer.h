@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+//Circular buffer para almacenar s numero de valores
+
 template<class T>
 class CircularBuffer {
 private:

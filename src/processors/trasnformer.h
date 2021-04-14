@@ -3,6 +3,8 @@
 
 #include <Arduino.h>
 
+//Tres tipos diferentes de transformaciones de datos
+
 template<class T>
 T scaler(T inp, float scale) {
     return T(inp * scale);
