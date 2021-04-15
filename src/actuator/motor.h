@@ -22,10 +22,10 @@ class Motor : public ActuatorABC<int> {
         uint8_t pin2;
         uint8_t pin3;
         uint8_t pin4;
-        void write(SignalPWM value);
+        void write(int value);
 };
 
-void Motor::write(SignalPWM value) {
+void Motor::write(int value) {
     int paso [8][4] =
     {
     {1, 0, 0, 0},
@@ -44,7 +44,7 @@ void Motor::write(SignalPWM value) {
       digitalWrite(pin2, paso[i][1]);
       digitalWrite(pin3, paso[i][2]);
       digitalWrite(pin4, paso[i][3]);
-      delay(value.getValue());
+      delay(value);
     }
 
 }

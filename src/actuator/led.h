@@ -8,7 +8,7 @@
 
 //Actuador tipo LED
 
-class Led : public ActuatorABC<bool> {
+class Led : public ActuatorABC<Signal> {
     public:
         Led(uint8_t id, uint8_t pin):ActuatorABC(id){
             this->pin=pin;
